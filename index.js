@@ -1,41 +1,36 @@
 
-
-const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-  })
-
-  
-
 function computerPlay() {
     let num = Math.floor(Math.random() * 3);
     
     switch (num) {
         case 0:
-            console.log("Rock")
+            return "Rock"
             break;
         case 1:
-            console.log("Paper")
+            return "Paper"
             break;
         case 2: 
-            console.log("Scissors")
+            return "Scissors"
             break;
         default:
             break;
     }
 }
 
-function humanPlay() {
-    readline.question(`Enter Choice:`, choice => {
-        console.log(`User entered ${choice}`)
-        readline.close()
-      })
+function playGame () {
+    let player = document.getElementById('text').value
+    let computer = computerPlay()
+
+    if (player === 'rock' && computer === 'Paper') {
+        console.log('Computer Wins with Paper')
+    } else if (player === 'scissors' && computer === 'Rock') {
+        console.log('Computer wins with Rock')
+    } else if (player === 'paper' && computer === 'Scissors') {
+        console.log('Computer wins with Scissors')
+    } else {
+        console.log(`Player wins with ${player}`)
+    }
+
+    console.log(`Player: ${player}, Computer: ${computer}`)
 }
 
-function playGame() {
-    humanPlay()
-    .then(computerPlay())
-    .catch(failureCallbackfunction)
-}
-
-playGame()
