@@ -1,3 +1,6 @@
+let playerScore = 0
+let computerScore = 0
+let round = 1
 
 function computerPlay() {
     let num = Math.floor(Math.random() * 3);
@@ -21,15 +24,43 @@ function playGame () {
     let player = document.getElementById('text').value
     let computer = computerPlay()
 
+   
     if (player === 'rock' && computer === 'Paper') {
-        console.log('Computer Wins with Paper')
+        console.log(`Computer Wins round ${round} with Paper`)
+        computerScore++
+        round++
     } else if (player === 'scissors' && computer === 'Rock') {
-        console.log('Computer wins with Rock')
+        console.log(`Computer wins round ${round} with Rock`)
+        computerScore++
+        round++
     } else if (player === 'paper' && computer === 'Scissors') {
-        console.log('Computer wins with Scissors')
+        console.log(`Computer wins round ${round} with Scissors`)
+        computerScore++
+        round++
     } else {
-        console.log(`Player wins with ${player}`)
+        console.log(`Player wins round ${round} with ${player}`)
+        playerScore++
+        round++
     }
+
+    let results = () => {
+        console.log(`Results:`)
+        console.log(`Player: ${playerScore}`)
+        console.log(`Computer: ${computerScore}`)
+        round = 0
+    }
+
+    if (round === 6) {
+        if (playerScore > computerScore) {
+            console.log(`Player Wins!`)
+            results()
+        } else {
+            console.log(`Computer Wins!`)
+            results()
+        }
+    }
+    
+    
 
     console.log(`Player: ${player}, Computer: ${computer}`)
 }
